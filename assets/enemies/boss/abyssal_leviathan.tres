@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Data/EnemyData.cs" id="1_enemy"]
+[ext_resource type="Script" path="res://Scripts/Data/CardEffect.cs" id="2_effect"]
+[ext_resource type="Script" path="res://Scripts/Data/EnemyActionData.cs" id="3_action"]
+[ext_resource type="Script" path="res://Scripts/Data/EnemyActionEntry.cs" id="4_entry"]
+
+[sub_resource type="Resource" id="BiteEffect"]
+script = ExtResource("2_effect")
+EffectType = 0
+Target = 2
+Value = 12
+[sub_resource type="Resource" id="ArmorEffect"]
+script = ExtResource("2_effect")
+EffectType = 1
+Target = 1
+Value = 16
+[sub_resource type="Resource" id="SlamEffect"]
+script = ExtResource("2_effect")
+EffectType = 0
+Target = 2
+Value = 18
+[sub_resource type="Resource" id="VulnerableEffect"]
+script = ExtResource("2_effect")
+EffectType = 2
+Target = 2
+StatusType = 3
+StatusAmount = 1
+[sub_resource type="Resource" id="BiteAction"]
+script = ExtResource("3_action")
+ActionName = "深渊撕咬"
+IntentType = 0
+Effects = Array[ExtResource("2_effect")]([SubResource("BiteEffect")])
+[sub_resource type="Resource" id="ArmorAction"]
+script = ExtResource("3_action")
+ActionName = "鲸潮甲壳"
+IntentType = 1
+Effects = Array[ExtResource("2_effect")]([SubResource("ArmorEffect")])
+[sub_resource type="Resource" id="SlamAction"]
+script = ExtResource("3_action")
+ActionName = "海渊冲击"
+IntentType = 4
+Effects = Array[ExtResource("2_effect")]([SubResource("SlamEffect"), SubResource("VulnerableEffect")])
+[sub_resource type="Resource" id="BiteEntry"]
+script = ExtResource("4_entry")
+Action = SubResource("BiteAction")
+Copies = 2
+[sub_resource type="Resource" id="ArmorEntry"]
+script = ExtResource("4_entry")
+Action = SubResource("ArmorAction")
+[sub_resource type="Resource" id="SlamEntry"]
+script = ExtResource("4_entry")
+Action = SubResource("SlamAction")
+[resource]
+script = ExtResource("1_enemy")
+Id = "abyssal_leviathan"
+DisplayName = "深渊巨兽"
+MaxHealth = 110
+ActionEntries = Array[ExtResource("4_entry")]([SubResource("BiteEntry"), SubResource("ArmorEntry"), SubResource("SlamEntry")])

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bgostyi7je30s"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2"]
+
+[sub_resource type="Resource" id="e"]
+script = ExtResource("2")
+EffectType = 3
+Target = 1
+Value = 1
+
+[resource]
+script = ExtResource("1")
+Id = "supplies"
+DisplayName = "补给"
+Description = "抽 1 张牌。消耗"
+CardType = 1
+Rarity = 1
+Exhaust = true
+Effects = Array[ExtResource("2")]([SubResource("e")])

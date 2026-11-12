@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://bo68k4emuj07d"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1_card"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2_effect"]
+
+[sub_resource type="Resource" id="Armor"]
+script = ExtResource("2_effect")
+EffectType = 1
+Target = 1
+Value = 5
+
+[resource]
+script = ExtResource("1_card")
+Id = "whale_shell"
+DisplayName = "鲸壳防御"
+Description = "获得 5 点护甲"
+Cost = 1
+CardType = 1
+Effects = Array[ExtResource("2_effect")]([SubResource("Armor")])

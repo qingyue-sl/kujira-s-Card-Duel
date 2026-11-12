@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dlc6u1ost3o2f"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2"]
+
+[sub_resource type="Resource" id="e"]
+script = ExtResource("2")
+EffectType = 2
+Target = 2
+StatusType = 3
+StatusAmount = 2
+
+[resource]
+script = ExtResource("1")
+Id = "spot_weakness"
+DisplayName = "破绽观察"
+Description = "使敌人获得 2 层易伤"
+Cost = 1
+CardType = 1
+Rarity = 1
+TargetType = 1
+Effects = Array[ExtResource("2")]([SubResource("e")])

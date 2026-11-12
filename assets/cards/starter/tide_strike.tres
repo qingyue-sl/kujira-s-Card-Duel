@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://co14ohfqiy4a7"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1_card"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2_effect"]
+
+[sub_resource type="Resource" id="Damage"]
+script = ExtResource("2_effect")
+Target = 2
+Value = 6
+
+[resource]
+script = ExtResource("1_card")
+Id = "tide_strike"
+DisplayName = "潮汐打击"
+Description = "造成 6 点伤害"
+Cost = 1
+TargetType = 1
+Effects = Array[ExtResource("2_effect")]([SubResource("Damage")])

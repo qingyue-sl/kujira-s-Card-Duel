@@ -1,0 +1,30 @@
+[gd_scene load_steps=17 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Run/GameFlow.cs" id="1_flow"]
+[ext_resource type="Resource" path="res://assets/cards/starter/tide_strike.tres" id="2_strike"]
+[ext_resource type="Resource" path="res://assets/cards/starter/whale_shell.tres" id="3_guard"]
+[ext_resource type="Resource" path="res://assets/cards/starter/counter_stance.tres" id="4_stance"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/low_reef_crab.tres" id="5_l1"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/low_jellyfish.tres" id="6_l2"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/low_raider.tres" id="7_l3"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/medium_crab_jelly.tres" id="8_m1"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/medium_crab_raider.tres" id="9_m2"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/medium_jelly_raider.tres" id="10_m3"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/high_crab_pair.tres" id="11_h1"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/high_jelly_swarm.tres" id="12_h2"]
+[ext_resource type="Resource" path="res://assets/encounters/normal/high_raider_party.tres" id="13_h3"]
+[ext_resource type="Resource" path="res://assets/encounters/elite/low_armored_guard.tres" id="14_e1"]
+[ext_resource type="Resource" path="res://assets/encounters/elite/medium_storm_jelly.tres" id="15_e2"]
+[ext_resource type="Resource" path="res://assets/encounters/elite/high_raider_captain.tres" id="16_e3"]
+[ext_resource type="Resource" path="res://assets/encounters/boss/abyssal_leviathan.tres" id="17_boss"]
+
+[node name="GameFlow" type="Node"]
+script = ExtResource("1_flow")
+StarterDeck = Array[Resource]([ExtResource("2_strike"), ExtResource("2_strike"), ExtResource("2_strike"), ExtResource("2_strike"), ExtResource("2_strike"), ExtResource("3_guard"), ExtResource("3_guard"), ExtResource("3_guard"), ExtResource("3_guard"), ExtResource("4_stance")])
+LowNormalEncounters = Array[Resource]([ExtResource("5_l1"), ExtResource("6_l2"), ExtResource("7_l3")])
+MediumNormalEncounters = Array[Resource]([ExtResource("8_m1"), ExtResource("9_m2"), ExtResource("10_m3")])
+HighNormalEncounters = Array[Resource]([ExtResource("11_h1"), ExtResource("12_h2"), ExtResource("13_h3")])
+LowEliteEncounters = Array[Resource]([ExtResource("14_e1")])
+MediumEliteEncounters = Array[Resource]([ExtResource("15_e2")])
+HighEliteEncounters = Array[Resource]([ExtResource("16_e3")])
+BossEncounter = ExtResource("17_boss")

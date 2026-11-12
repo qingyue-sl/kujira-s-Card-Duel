@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Scripts/Data/EncounterData.cs" id="1"]
+[ext_resource type="Resource" path="res://assets/enemies/deep_jellyfish.tres" id="2"]
+[resource]
+script = ExtResource("1")
+Id = "low_jellyfish"
+DisplayName = "幽光漂流"
+Kind = 0
+Difficulty = 0
+Enemies = Array[Resource]([ExtResource("2")])

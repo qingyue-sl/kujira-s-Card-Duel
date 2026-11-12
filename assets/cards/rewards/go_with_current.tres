@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dgofsemkuaaf7"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2"]
+
+[sub_resource type="Resource" id="energy"]
+script = ExtResource("2")
+EffectType = 4
+Target = 1
+Value = 1
+
+[sub_resource type="Resource" id="draw"]
+script = ExtResource("2")
+EffectType = 3
+Target = 1
+Value = 1
+
+[resource]
+script = ExtResource("1")
+Id = "go_with_current"
+DisplayName = "顺流"
+Description = "获得 1 点能量，抽 1 张牌。消耗"
+CardType = 1
+Rarity = 2
+Exhaust = true
+Effects = Array[ExtResource("2")]([SubResource("energy"), SubResource("draw")])

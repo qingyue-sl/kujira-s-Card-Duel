@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://c5eli3n7oy18f"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2"]
+
+[sub_resource type="Resource" id="e"]
+script = ExtResource("2")
+Target = 2
+Value = 8
+
+[resource]
+script = ExtResource("1")
+Id = "wave_breaker"
+DisplayName = "破浪一击"
+Description = "造成 8 点伤害"
+Cost = 1
+Rarity = 1
+TargetType = 1
+Effects = Array[ExtResource("2")]([SubResource("e")])

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://hn8q4cvdtmul"]
 
-[ext_resource type="Script" uid="uid://dqedlmt2uhwgo" path="res://scripts/Card.cs" id="1_2rkeb"]
+[ext_resource type="Script" uid="uid://bpgovax7ij1oy" path="res://Scripts/UI/CardView.cs" id="1_card"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rkeb"]
+[sub_resource type="StyleBoxFlat" id="CardSurface"]
 bg_color = Color(0.12, 0.16, 0.28, 0.98)
 border_width_left = 2
 border_width_top = 2
@@ -14,33 +14,91 @@ corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
-[node name="Card" type="PanelContainer" unique_id=1753006794]
+[sub_resource type="StyleBoxFlat" id="CostBadge"]
+bg_color = Color(0.1, 0.52, 0.82, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="Card" type="Control" node_paths=PackedStringArray("NameLabel", "CostLabel", "DescriptionLabel", "TypeLabel", "SelectButton")]
 custom_minimum_size = Vector2(142, 182)
+layout_mode = 3
 offset_right = 142.0
 offset_bottom = 182.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_2rkeb")
-script = ExtResource("1_2rkeb")
+script = ExtResource("1_card")
+NameLabel = NodePath("NameLabel")
+CostLabel = NodePath("CostBadge/CostLabel")
+DescriptionLabel = NodePath("DescriptionLabel")
+TypeLabel = NodePath("TypeLabel")
+SelectButton = NodePath("Button")
 
-[node name="VBox" type="VBoxContainer" parent="." unique_id=956104634]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 140.0
+offset_bottom = 180.0
+theme_override_styles/normal = SubResource("CardSurface")
+theme_override_styles/pressed = SubResource("CardSurface")
+theme_override_styles/hover = SubResource("CardSurface")
+theme_override_styles/disabled = SubResource("CardSurface")
+theme_override_styles/focus = SubResource("CardSurface")
 
-[node name="NameLabel" type="Label" parent="VBox" unique_id=1125580786]
+[node name="CostBadge" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 11.0
+offset_right = 35.0
+offset_bottom = 41.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("CostBadge")
+
+[node name="CostLabel" type="Label" parent="CostBadge"]
 layout_mode = 2
-size_flags_vertical = 1
-text = "打击"
+theme_override_colors/font_color = Color(0.92, 0.98, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DescLabel" type="Label" parent="VBox" unique_id=1713039305]
-layout_mode = 2
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 132.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.82, 0.93, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "潮汐打击"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+mouse_filter = 2
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 53.0
+offset_right = 129.0
+offset_bottom = 141.0
+theme_override_colors/font_color = Color(0.9, 0.93, 0.99, 1)
+theme_override_font_sizes/font_size = 14
 text = "造成 6 点伤害"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
+mouse_filter = 2
 
-[node name="CostLabel" type="Label" parent="VBox" unique_id=305229577]
-layout_mode = 2
-text = "费用1"
+[node name="TypeLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 148.0
+offset_right = 129.0
+offset_bottom = 171.0
+theme_override_colors/font_color = Color(0.47, 0.73, 0.96, 1)
+theme_override_font_sizes/font_size = 13
+text = "攻击"
 horizontal_alignment = 1
 vertical_alignment = 1
+mouse_filter = 2

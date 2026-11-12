@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://byokptmdcmxjg"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2"]
+
+[sub_resource type="Resource" id="e"]
+script = ExtResource("2")
+EffectType = 6
+Target = 2
+Value = 2
+
+[resource]
+script = ExtResource("1")
+Id = "armor_crusher"
+DisplayName = "潮甲粉碎"
+Description = "失去全部护甲，造成其 2 倍伤害"
+Cost = 2
+Rarity = 2
+TargetType = 1
+Effects = Array[ExtResource("2")]([SubResource("e")])

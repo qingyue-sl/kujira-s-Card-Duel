@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Data/EnemyData.cs" id="1_enemy"]
+[ext_resource type="Script" path="res://Scripts/Data/CardEffect.cs" id="2_effect"]
+[ext_resource type="Script" path="res://Scripts/Data/EnemyActionData.cs" id="3_action"]
+[ext_resource type="Script" path="res://Scripts/Data/EnemyActionEntry.cs" id="4_entry"]
+
+[sub_resource type="Resource" id="SlashEffect"]
+script = ExtResource("2_effect")
+EffectType = 0
+Target = 2
+Value = 11
+[sub_resource type="Resource" id="ArmorEffect"]
+script = ExtResource("2_effect")
+EffectType = 1
+Target = 1
+Value = 12
+[sub_resource type="Resource" id="ChargeEffect"]
+script = ExtResource("2_effect")
+EffectType = 0
+Target = 2
+Value = 17
+[sub_resource type="Resource" id="SlashAction"]
+script = ExtResource("3_action")
+ActionName = "船长斩"
+IntentType = 0
+Effects = Array[ExtResource("2_effect")]([SubResource("SlashEffect")])
+[sub_resource type="Resource" id="ArmorAction"]
+script = ExtResource("3_action")
+ActionName = "劫掠战术"
+IntentType = 1
+Effects = Array[ExtResource("2_effect")]([SubResource("ArmorEffect")])
+[sub_resource type="Resource" id="ChargeAction"]
+script = ExtResource("3_action")
+ActionName = "无畏冲锋"
+IntentType = 0
+Effects = Array[ExtResource("2_effect")]([SubResource("ChargeEffect")])
+[sub_resource type="Resource" id="SlashEntry"]
+script = ExtResource("4_entry")
+Action = SubResource("SlashAction")
+Copies = 2
+[sub_resource type="Resource" id="ArmorEntry"]
+script = ExtResource("4_entry")
+Action = SubResource("ArmorAction")
+[sub_resource type="Resource" id="ChargeEntry"]
+script = ExtResource("4_entry")
+Action = SubResource("ChargeAction")
+[resource]
+script = ExtResource("1_enemy")
+Id = "raider_captain"
+DisplayName = "潮汐船长"
+MaxHealth = 58
+ActionEntries = Array[ExtResource("4_entry")]([SubResource("SlashEntry"), SubResource("ArmorEntry"), SubResource("ChargeEntry")])

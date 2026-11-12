@@ -1,33 +1,55 @@
-[gd_scene format=3 uid="uid://ctx8gugf2v86y"]
+[gd_scene format=3 uid="uid://cc7hbot505atf"]
 
-[ext_resource type="Script" uid="uid://cc6cctc0oruua" path="res://scripts/Battle.cs" id="1_battle"]
-[ext_resource type="PackedScene" uid="uid://hn8q4cvdtmul" path="res://scenes/ui/card.tscn" id="2_th188"]
+[ext_resource type="Script" uid="uid://ciigtnn1k137y" path="res://Scripts/Battle/Battle.cs" id="1_battle"]
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="2_jt4d8"]
+[ext_resource type="Script" uid="uid://d2vhu5cojw1s7" path="res://Scripts/UI/BattleUI.cs" id="2_ui"]
+[ext_resource type="Script" uid="uid://dvoioi86nb0ku" path="res://Scripts/UI/RewardScreen.cs" id="3_reward"]
+[ext_resource type="PackedScene" uid="uid://hn8q4cvdtmul" path="res://scenes/ui/card.tscn" id="4_card"]
+[ext_resource type="PackedScene" uid="uid://b10klcwfy24qr" path="res://scenes/ui/enemy.tscn" id="5_enemy"]
+[ext_resource type="Script" uid="uid://1rx31l6w4bbm" path="res://Scripts/Data/EnemyData.cs" id="6_kl6ie"]
+[ext_resource type="Resource" path="res://assets/cards/starter/tide_strike.tres" id="6_strike"]
+[ext_resource type="Resource" path="res://assets/cards/starter/whale_shell.tres" id="7_guard"]
+[ext_resource type="Resource" path="res://assets/cards/starter/counter_stance.tres" id="8_stance"]
+[ext_resource type="Resource" path="res://assets/enemies/reef_crab.tres" id="9_crab"]
+[ext_resource type="Resource" path="res://assets/enemies/deep_jellyfish.tres" id="10_jelly"]
+[ext_resource type="Resource" path="res://assets/enemies/tide_raider.tres" id="11_raider"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/wave_breaker.tres" id="12_wave"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/thick_shell.tres" id="13_thick"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/shield_bash.tres" id="14_bash"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/armor_spikes.tres" id="15_spikes"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/spot_weakness.tres" id="16_weak"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/tide_combo.tres" id="17_combo"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/supplies.tres" id="18_supplies"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/great_whale_barrier.tres" id="19_barrier"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/counter_tide.tres" id="20_counter"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/go_with_current.tres" id="21_current"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/armor_crusher.tres" id="22_crusher"]
+[ext_resource type="Resource" path="res://assets/cards/rewards/whale_song_echo.tres" id="23_echo"]
 
-[sub_resource type="StyleBoxFlat" id="StylePlayer"]
+[sub_resource type="StyleBoxFlat" id="StyleStat"]
 bg_color = Color(0.055, 0.09, 0.16, 0.96)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.18, 0.62, 0.88, 0.85)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 4
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgoel"]
-bg_color = Color(0.18, 0.055, 0.075, 0.97)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.9, 0.28, 0.32, 0.9)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-shadow_color = Color(0, 0, 0, 0.45)
-shadow_size = 10
+[sub_resource type="StyleBoxFlat" id="StyleMessage"]
+bg_color = Color(0.035, 0.06, 0.12, 0.78)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.52, 0.75, 0.45)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleEndTurn"]
 bg_color = Color(0.85, 0.28, 0.16, 1)
@@ -43,277 +65,329 @@ corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
-[node name="Battle" type="Control" unique_id=411400192]
-layout_mode = 3
+[sub_resource type="StyleBoxFlat" id="StyleRewardPanel"]
+bg_color = Color(0.035, 0.065, 0.13, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.35, 0.8, 1, 0.9)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleRewardCard"]
+bg_color = Color(0.11, 0.19, 0.32, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.63, 0.94, 0.8)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Battle" type="Node" unique_id=1395027463]
+script = ExtResource("1_battle")
+StartingDeck = Array[ExtResource("2_jt4d8")]([ExtResource("6_strike"), ExtResource("6_strike"), ExtResource("6_strike"), ExtResource("6_strike"), ExtResource("6_strike"), ExtResource("7_guard"), ExtResource("7_guard"), ExtResource("7_guard"), ExtResource("7_guard"), ExtResource("8_stance")])
+DemoEnemyPool = Array[ExtResource("6_kl6ie")]([ExtResource("9_crab"), ExtResource("10_jelly"), ExtResource("11_raider")])
+
+[node name="Background" type="ColorRect" parent="." unique_id=1637346631]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -4.0
-offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_battle")
-CardScene = ExtResource("2_th188")
+mouse_filter = 2
+color = Color(0.018, 0.035, 0.075, 1)
 
-[node name="Background" type="ColorRect" parent="." unique_id=1636736360]
+[node name="Title" type="Label" parent="." unique_id=1956548365]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 22.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.57, 0.86, 1, 1)
+theme_override_font_sizes/font_size = 25
+text = "kujira-ko 的大冒险"
+horizontal_alignment = 1
+
+[node name="EncounterLabel" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 58.0
+offset_bottom = 82.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.5, 0.7, 0.9, 1)
+theme_override_font_sizes/font_size = 15
+text = "第 1 层 · 普通战 1/3"
+horizontal_alignment = 1
+
+[node name="FeedbackLayer" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 3.0
-offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.025, 0.04, 0.085, 1)
 
-[node name="PlayerArea" type="HBoxContainer" parent="." unique_id=1677313883]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 28.0
-offset_right = 445.0
-offset_bottom = 92.0
-theme_override_constants/separation = 14
+[node name="PlayerArea" type="HBoxContainer" parent="." unique_id=571712952]
+offset_left = 28.0
+offset_top = 24.0
+offset_right = 490.0
+offset_bottom = 78.0
+theme_override_constants/separation = 12
 
-[node name="HP_Label" type="Label" parent="PlayerArea" unique_id=502728490]
-custom_minimum_size = Vector2(195, 64)
+[node name="HP_Label" type="Label" parent="PlayerArea" unique_id=1799195750]
+custom_minimum_size = Vector2(180, 44)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 1, 0.65, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StylePlayer")
-text = "生命 50 / 50 "
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleStat")
+text = "生命 60 / 60"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Energy_Label" type="Label" parent="PlayerArea" unique_id=13407973]
-custom_minimum_size = Vector2(195, 64)
+[node name="Energy_Label" type="Label" parent="PlayerArea" unique_id=1150953886]
+custom_minimum_size = Vector2(185, 44)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.44, 0.78, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StylePlayer")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleStat")
 text = "能量 3 / 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemyArea" type="HBoxContainer" parent="." unique_id=747151955]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -102.5
-offset_right = 140.0
-offset_bottom = 102.5
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_constants/separation = 40
-
-[node name="EnemyPanel" type="Panel" parent="EnemyArea" unique_id=1622203865]
-custom_minimum_size = Vector2(280, 205)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mgoel")
-
-[node name="Hp_Label" type="Label" parent="EnemyArea/EnemyPanel" unique_id=1016389530]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -35.0
-offset_right = 35.0
-offset_bottom = 49.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.6361667, 0.41000003, 1)
-theme_override_font_sizes/font_size = 24
-text = "20/20"
+[node name="DrawPileLabel" type="Label" parent="." unique_id=1013559913]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 29.0
+offset_right = -168.0
+offset_bottom = 82.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.68, 0.77, 0.9, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleStat")
+text = "抽牌堆：10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemyName" type="Label" parent="EnemyArea/EnemyPanel" unique_id=860776127]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -40.0
-offset_right = 58.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.78, 0.78, 1)
-theme_override_font_sizes/font_size = 29
-text = "迷雾猎犬"
+[node name="DiscardPileLabel" type="Label" parent="." unique_id=38131480]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -158.0
+offset_top = 29.0
+offset_right = -28.0
+offset_bottom = 82.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.68, 0.77, 0.9, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleStat")
+text = "弃牌堆：0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Intent_Label" type="Label" parent="EnemyArea/EnemyPanel" unique_id=1502712247]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -31.0
-offset_right = 64.0
+[node name="EnemyArea" type="HBoxContainer" parent="." unique_id=120409809]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 105.0
+offset_bottom = 320.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0.73, 0.36, 1)
-theme_override_font_sizes/font_size = 22
-text = "意图：攻击 6"
-horizontal_alignment = 1
+theme_override_constants/separation = 34
+alignment = 1
 
-[node name="EnemyPanel2" type="Panel" parent="EnemyArea" unique_id=774002730]
-custom_minimum_size = Vector2(280, 205)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mgoel")
-
-[node name="Hp_Label" type="Label" parent="EnemyArea/EnemyPanel2" unique_id=633551005]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -35.0
-offset_right = 35.0
-offset_bottom = 49.0
+[node name="MessageLabel" type="Label" parent="." unique_id=1401275540]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 250.0
+offset_top = 338.0
+offset_right = -250.0
+offset_bottom = 387.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.6361667, 0.41000003, 1)
-theme_override_font_sizes/font_size = 24
-text = "20/20"
+theme_override_colors/font_color = Color(0.86, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleMessage")
+text = "选择一张卡牌开始战斗"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EnemyName" type="Label" parent="EnemyArea/EnemyPanel2" unique_id=452738552]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -40.0
-offset_right = 58.0
-offset_bottom = 40.0
+[node name="HandHint" type="Label" parent="." unique_id=668609250]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 186.0
+offset_top = 439.0
+offset_right = -244.0
+offset_bottom = 475.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.78, 0.78, 1)
-theme_override_font_sizes/font_size = 29
-text = "迷雾猎犬"
+theme_override_colors/font_color = Color(0.72, 0.87, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "选择一张可用卡牌；攻击牌需再选择敌人，技能牌会立即施放。"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Intent_Label" type="Label" parent="EnemyArea/EnemyPanel2" unique_id=1880633867]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -31.0
-offset_right = 64.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0.73, 0.36, 1)
-theme_override_font_sizes/font_size = 22
-text = "意图：攻击 6"
-horizontal_alignment = 1
-
-[node name="EnemyPanel3" type="Panel" parent="EnemyArea" unique_id=1834553996]
-custom_minimum_size = Vector2(280, 205)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mgoel")
-
-[node name="Hp_Label" type="Label" parent="EnemyArea/EnemyPanel3" unique_id=1633561046]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -35.0
-offset_right = 35.0
-offset_bottom = 49.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.6361667, 0.41000003, 1)
-theme_override_font_sizes/font_size = 24
-text = "20/20"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EnemyName" type="Label" parent="EnemyArea/EnemyPanel3" unique_id=234587527]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -58.0
-offset_top = -40.0
-offset_right = 58.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.78, 0.78, 1)
-theme_override_font_sizes/font_size = 29
-text = "迷雾猎犬"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Intent_Label" type="Label" parent="EnemyArea/EnemyPanel3" unique_id=1006812195]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -31.0
-offset_right = 64.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0.73, 0.36, 1)
-theme_override_font_sizes/font_size = 22
-text = "意图：攻击 6"
-horizontal_alignment = 1
-
-[node name="HandArea" type="HBoxContainer" parent="." unique_id=163587281]
-layout_mode = 1
+[node name="HandArea" type="HBoxContainer" parent="." unique_id=155826469]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -210.0
-offset_bottom = -28.0
+offset_left = 2.0
+offset_top = -224.0
+offset_right = 2.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 alignment = 1
 
-[node name="EndTurnButton" type="Button" parent="." unique_id=2009784468]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
+[node name="EndTurnButton" type="Button" parent="." unique_id=417181424]
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -220.0
-offset_top = -106.0
-offset_right = -32.0
-offset_bottom = -34.0
+offset_left = -208.0
+offset_top = 421.0
+offset_right = -28.0
+offset_bottom = 477.0
 grow_horizontal = 0
-grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.95, 0.88, 1)
-theme_override_font_sizes/font_size = 23
+theme_override_font_sizes/font_size = 17
 theme_override_styles/normal = SubResource("StyleEndTurn")
 theme_override_styles/hover = SubResource("StyleEndTurnHover")
-text = "结束回合"
+text = "结束回合
+第 1 回合"
+
+[node name="BattleUI" type="Control" parent="." unique_id=1598614133 node_paths=PackedStringArray("Battle", "HandContainer", "EnemyContainer", "FeedbackLayer", "PlayerHealthLabel", "EnergyLabel", "DrawPileLabel", "DiscardPileLabel", "EncounterLabel", "MessageLabel", "HandHintLabel", "EndTurnButton")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_right = 39.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("2_ui")
+Battle = NodePath("..")
+CardViewScene = ExtResource("4_card")
+EnemyViewScene = ExtResource("5_enemy")
+HandContainer = NodePath("../HandArea")
+EnemyContainer = NodePath("../EnemyArea")
+FeedbackLayer = NodePath("../FeedbackLayer")
+PlayerHealthLabel = NodePath("../PlayerArea/HP_Label")
+EnergyLabel = NodePath("../PlayerArea/Energy_Label")
+DrawPileLabel = NodePath("../DrawPileLabel")
+DiscardPileLabel = NodePath("../DiscardPileLabel")
+EncounterLabel = NodePath("../EncounterLabel")
+MessageLabel = NodePath("../MessageLabel")
+HandHintLabel = NodePath("../HandHint")
+EndTurnButton = NodePath("../EndTurnButton")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1104863045]
+layer = 5
+
+[node name="RewardOverlay" type="Control" parent="CanvasLayer" unique_id=1354776261 node_paths=PackedStringArray("Battle", "TitleLabel", "ResultLabel", "ChoicesContainer", "FirstChoiceButton", "SecondChoiceButton", "ThirdChoiceButton", "SkipButton", "ContinueButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_reward")
+Battle = NodePath("../..")
+RewardPool = Array[ExtResource("2_jt4d8")]([ExtResource("12_wave"), ExtResource("13_thick"), ExtResource("14_bash"), ExtResource("15_spikes"), ExtResource("16_weak"), ExtResource("17_combo"), ExtResource("18_supplies"), ExtResource("19_barrier"), ExtResource("20_counter"), ExtResource("21_current"), ExtResource("22_crusher"), ExtResource("23_echo")])
+TitleLabel = NodePath("Panel/VBox/Title")
+ResultLabel = NodePath("Panel/VBox/ResultLabel")
+ChoicesContainer = NodePath("Panel/VBox/Choices")
+FirstChoiceButton = NodePath("Panel/VBox/Choices/FirstChoiceButton")
+SecondChoiceButton = NodePath("Panel/VBox/Choices/SecondChoiceButton")
+ThirdChoiceButton = NodePath("Panel/VBox/Choices/ThirdChoiceButton")
+SkipButton = NodePath("Panel/VBox/SkipButton")
+ContinueButton = NodePath("Panel/VBox/ContinueButton")
+
+[node name="Shade" type="ColorRect" parent="CanvasLayer/RewardOverlay" unique_id=1445337715]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0.04, 0.75)
+
+[node name="Panel" type="PanelContainer" parent="CanvasLayer/RewardOverlay" unique_id=1070469975]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -492.0
+offset_top = -230.0
+offset_right = 492.0
+offset_bottom = 230.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleRewardPanel")
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/RewardOverlay/Panel" unique_id=2088989147]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CanvasLayer/RewardOverlay/Panel/VBox" unique_id=1932803016]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 28
+text = "战斗胜利 · 选择一张新卡"
+horizontal_alignment = 1
+
+[node name="ResultLabel" type="Label" parent="CanvasLayer/RewardOverlay/Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.74, 0.84, 0.95, 1)
+theme_override_font_sizes/font_size = 17
+text = "选择一张奖励卡，或跳过本次奖励。"
+horizontal_alignment = 1
+
+[node name="Choices" type="HBoxContainer" parent="CanvasLayer/RewardOverlay/Panel/VBox" unique_id=199513104]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="FirstChoiceButton" type="Button" parent="CanvasLayer/RewardOverlay/Panel/VBox/Choices" unique_id=2093921451]
+custom_minimum_size = Vector2(286, 210)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleRewardCard")
+text = "候选卡一"
+autowrap_mode = 2
+
+[node name="SecondChoiceButton" type="Button" parent="CanvasLayer/RewardOverlay/Panel/VBox/Choices" unique_id=777221001]
+custom_minimum_size = Vector2(286, 210)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleRewardCard")
+text = "候选卡二"
+autowrap_mode = 2
+
+[node name="ThirdChoiceButton" type="Button" parent="CanvasLayer/RewardOverlay/Panel/VBox/Choices" unique_id=1797367204]
+custom_minimum_size = Vector2(286, 210)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleRewardCard")
+text = "候选卡三"
+autowrap_mode = 2
+
+[node name="SkipButton" type="Button" parent="CanvasLayer/RewardOverlay/Panel/VBox" unique_id=730965401]
+custom_minimum_size = Vector2(200, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.8, 0.92, 1)
+theme_override_font_sizes/font_size = 17
+text = "跳过奖励"
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/RewardOverlay/Panel/VBox"]
+custom_minimum_size = Vector2(200, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.96, 1, 1)
+theme_override_font_sizes/font_size = 19
+text = "继续冒险"
+visible = false

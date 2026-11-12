@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://v8nw35csrdop"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2"]
+
+[sub_resource type="Resource" id="armor"]
+script = ExtResource("2")
+EffectType = 1
+Target = 1
+Value = 4
+
+[sub_resource type="Resource" id="counter"]
+script = ExtResource("2")
+EffectType = 2
+Target = 1
+StatusType = 5
+StatusAmount = 2
+
+[resource]
+script = ExtResource("1")
+Id = "armor_spikes"
+DisplayName = "甲刺"
+Description = "获得 4 点护甲。护甲承伤时反击 2"
+Cost = 1
+CardType = 1
+Rarity = 1
+Effects = Array[ExtResource("2")]([SubResource("armor"), SubResource("counter")])

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://cbkmmpeiw8325"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2"]
+
+[sub_resource type="Resource" id="e"]
+script = ExtResource("2")
+EffectType = 1
+Target = 1
+Value = 8
+
+[resource]
+script = ExtResource("1")
+Id = "thick_shell"
+DisplayName = "厚壳防线"
+Description = "获得 8 点护甲"
+Cost = 1
+CardType = 1
+Rarity = 1
+Effects = Array[ExtResource("2")]([SubResource("e")])

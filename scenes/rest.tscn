@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/RestScreen.cs" id="1_rest"]
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.045, 0.1, 0.17, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.72, 0.86, 0.85)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[node name="RestScreen" type="Control" node_paths=PackedStringArray("HealthLabel", "MessageLabel", "HealFloatLabel", "HealButton", "DeckContainer", "RemoveButton", "SkipRemoveButton", "ContinueButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rest")
+HealthLabel = NodePath("Panel/VBox/HealthLabel")
+MessageLabel = NodePath("Panel/VBox/MessageLabel")
+HealFloatLabel = NodePath("HealFloatLabel")
+HealButton = NodePath("Panel/VBox/HealButton")
+DeckContainer = NodePath("Panel/VBox/DeckContainer")
+RemoveButton = NodePath("Panel/VBox/RemoveButton")
+SkipRemoveButton = NodePath("Panel/VBox/SkipRemoveButton")
+ContinueButton = NodePath("Panel/VBox/ContinueButton")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.05, 0.08, 1)
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -300.0
+offset_right = 480.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.56, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "潮汐休整"
+horizontal_alignment = 1
+
+[node name="HealthLabel" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 1, 0.62, 1)
+theme_override_font_sizes/font_size = 23
+text = "生命 60/60"
+horizontal_alignment = 1
+
+[node name="HealButton" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "休息：恢复最大生命的 25%"
+
+[node name="DeckPrompt" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "选择一张牌移除（也可跳过）"
+horizontal_alignment = 1
+
+[node name="DeckContainer" type="FlowContainer" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+alignment = 1
+
+[node name="RemoveButton" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+text = "移除所选卡牌"
+disabled = true
+
+[node name="SkipRemoveButton" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+text = "跳过移除"
+
+[node name="MessageLabel" type="Label" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.72, 0.84, 0.96, 1)
+text = "先休息，再选择是否调整牌组。"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "继续冒险"
+disabled = true
+
+[node name="HealFloatLabel" type="Label" parent="."]
+layout_mode = 0
+theme_override_colors/font_color = Color(0.38, 1, 0.56, 1)
+theme_override_font_sizes/font_size = 30
+text = "+15"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=3 format=3]
+[ext_resource type="Script" path="res://Scripts/Data/EncounterData.cs" id="1"]
+[ext_resource type="Resource" path="res://assets/enemies/elites/armored_crab_guard.tres" id="2"]
+[resource]
+script = ExtResource("1")
+Id = "elite_armored_guard"
+DisplayName = "精英：甲壳守卫"
+Kind = 1
+Difficulty = 0
+Enemies = Array[Resource]([ExtResource("2")])

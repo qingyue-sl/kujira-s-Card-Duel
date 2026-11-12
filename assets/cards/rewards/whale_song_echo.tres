@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="CardData" format=3 uid="uid://dwq5xbhq8oa1a"]
+
+[ext_resource type="Script" uid="uid://c2dpfonxmcwwp" path="res://Scripts/Data/CardData.cs" id="1"]
+[ext_resource type="Script" uid="uid://d3a0tjj5wqh4m" path="res://Scripts/Data/CardEffect.cs" id="2"]
+
+[sub_resource type="Resource" id="armor"]
+script = ExtResource("2")
+EffectType = 1
+Target = 1
+Value = 12
+
+[sub_resource type="Resource" id="counter"]
+script = ExtResource("2")
+EffectType = 2
+Target = 1
+StatusType = 5
+StatusAmount = 8
+
+[sub_resource type="Resource" id="draw"]
+script = ExtResource("2")
+EffectType = 3
+Target = 1
+Value = 1
+
+[resource]
+script = ExtResource("1")
+Id = "whale_song_echo"
+DisplayName = "鲸歌回响"
+Description = "获得 12 点护甲、反击 8，并抽 1 张牌"
+Cost = 2
+CardType = 1
+Rarity = 3
+Effects = Array[ExtResource("2")]([SubResource("armor"), SubResource("counter"), SubResource("draw")])

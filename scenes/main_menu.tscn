@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://Scripts/UI/MainMenu.cs" id="1_menu"]
+
+[sub_resource type="StyleBoxFlat" id="CharacterCard"]
+bg_color = Color(0.06, 0.13, 0.24, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.24, 0.66, 0.95, 0.9)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StartButton"]
+bg_color = Color(0.1, 0.55, 0.82, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("StartButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+StartButton = NodePath("Center/VBox/StartButton")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.015, 0.035, 0.08, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(500, 510)
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.86, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "kujira-ko 的大冒险"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.58, 0.68, 0.82, 1)
+theme_override_font_sizes/font_size = 18
+text = "选择一名角色，踏入深海。"
+horizontal_alignment = 1
+
+[node name="CharacterCard" type="PanelContainer" parent="Center/VBox"]
+custom_minimum_size = Vector2(500, 260)
+layout_mode = 2
+theme_override_styles/panel = SubResource("CharacterCard")
+
+[node name="Info" type="VBoxContainer" parent="Center/VBox/CharacterCard"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Name" type="Label" parent="Center/VBox/CharacterCard/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.93, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "kujira-ko"
+horizontal_alignment = 1
+
+[node name="Role" type="Label" parent="Center/VBox/CharacterCard/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.78, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "当前唯一可选角色 · 护甲反击流"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="Center/VBox/CharacterCard/Info"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "生命：60\n初始牌组：5 张潮汐打击、4 张鲸壳防御、1 张反击架势"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="Center/VBox"]
+custom_minimum_size = Vector2(500, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94, 0.99, 1, 1)
+theme_override_font_sizes/font_size = 23
+theme_override_styles/normal = SubResource("StartButton")
+text = "开始冒险"

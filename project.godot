@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="kujira-ko的大冒险"
-run/main_scene="uid://ctx8gugf2v86y"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,10 @@ window/stretch/aspect="expand"
 [dotnet]
 
 project/assembly_name="kujira-ko的大冒险"
+
+[autoload]
+
+GameFlow="*res://scenes/game_flow.tscn"
 
 [physics]
 
